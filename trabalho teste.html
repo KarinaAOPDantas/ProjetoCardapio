@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Digital</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace, sans-serif;
+            margin: 20px;
+        }
+        .category {
+            margin-bottom: 20px;
+        }
+        .item {
+            margin-bottom: 10px;
+        }
+        #cart {
+            margin-top: 20px;
+            border-top: 1px solid #000;
+            padding-top: 20px;
+        }
+        .cart-item {
+            margin-bottom: 10px;
+        }
+        #total {
+            font-weight: bold;
+        }
+        #checkout {
+            margin-top: 20px;
+            display: none;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Menu Digital - FOOD MARKET</h1>
+
+    <div class="category">
+        <h2>Hambúrgueres</h2>
+        <div class="item">
+            <input type="checkbox" id="burger1" name="item" data-name="Cheeseburger" data-price="15.00">
+            <label for="burger1">Cheeseburger - R$ 15,00</label>
+            <input type="number" min="1" value="1" class="quantity hidden" id="qty_burger1">
+        </div>
+        <div class="item">
+            <input type="checkbox" id="burger2" name="item" data-name="Hamburger" data-price="12.00">
+            <label for="burger2">Hamburger - R$ 12,00</label>
+            <input type="number" min="1" value="1" class="quantity hidden" id="qty_burger2">
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>Salgados</h2>
+        <div class="item">
+            <input type="checkbox" id="salgado1" name="item" data-name="Coxinha" data-price="5.00">
+            <label for="salgado1">Coxinha - R$ 5,00</label>
+            <input type="number" min="1" value="1" class="quantity hidden" id="qty_salgado1">
+        </div>
+        <div class="item">
+            <input type="checkbox" id="salgado2" name="item" data-name="Pastel" data-price="6.00">
+            <label for="salgado2">Pastel - R$ 6,00</label>
+            <input type="number" min="1" value="1" class="quantity hidden" id="qty_salgado2">
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>Bebidas</h2>
+        <div class="item">
+            <input type="checkbox" id="bebida1" name="item" data-name="Refrigerante" data-price="4.00">
+            <label for="bebida1">Refrigerante - R$ 4,00</label>
+            <input type="number" min="1" value="1" class="quantity hidden" id="qty_bebida1">
+        </div>
+        <div class="item">
+            <input type="checkbox" id="bebida2" name="item" data-name="Suco" data-price="5.00">
+            <label for="bebida2">Suco - R$ 5,00</label>
+            <input type="number" min="1" value="1" class="quantity hidden" id="qty_bebida2">
+        </div>
+    </div>
+
+    <div id="cart">
+        <h2>Carrinho de Compras</h2>
+        <div id="cart-items"></div>
+        <p id="total">Total: R$ 0,00</p>
+        <button onclick="addMoreItems()">Adicionar mais itens</button>
+        <button onclick="checkout()">Finalizar pedido</button>
+    </div>
+
+    <div id="checkout" class="hidden">
+        <h2>Finalização do Pedido</h2>
+        <p>Nome completo: <input type="text" id="customer-name"></p>
+        <p>Endereço: <input type="text" id="customer-address"></p>
+        <p>Forma de pagamento:
+            <select id="payment-method">
+                <option value="debito">Cartão de Débito</option>
+                <option value="credito">Cartão de Crédito</option>
+                <option value="pix">Pix</option>
+            </select>
+        </p>
+        <h3>Resumo do Pedido</h3>
+        <div id="order-summary"></div>
+        <p id="summary-total">Total: R$ 0,00</p>
+        <button onclick="confirmOrder()">Confirmar Pedido</button>
+        <button onclick="cancelOrder()">Cancelar Pedido</button>
+    </div>
+
+    <script>
+        const cart = [];
+        
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', event => {
+                const quantityInput = document.getElementById('qty_' + event.target.id);
+                quantityInput.classList.toggle('hidden', !event.target.checked);
+            });
+        });
+
+        function updateCart() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            cartItemsDiv.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.textContent = `${item.quantity}x ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)}`;
+                cartItemsDiv.appendChild(itemDiv);
+                total += item.price * item.quantity;
+            });
+            document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
+        }
+
+        function addMoreItems() {
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                const itemName = checkbox.getAttribute('data-name');
+                const itemPrice = parseFloat(checkbox.getAttribute('data-price'));
+                const itemQuantity = parseInt(document.getElementById('qty_' + checkbox.id).value);
+                const cartItem = { name: itemName, price: itemPrice, quantity: itemQuantity };
+                cart.push(cartItem);
+            });
+            updateCart();
+        }
+
+        function checkout() {
+            document.getElementById('checkout').classList.remove('hidden');
+            document.getElementById('cart').classList.add('hidden');
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const summaryDiv = document.getElementById('order-summary');
+            summaryDiv.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.textContent = `${item.quantity}x ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)}`;
+                summaryDiv.appendChild(itemDiv);
+                total += item.price * item.quantity;
+            });
+            document.getElementById('summary-total').textContent = `Total: R$ ${total.toFixed(2)}`;
+        }
+
+        function confirmOrder() {
+            const customerName = document.getElementById('customer-name').value;
+            const customerAddress = document.getElementById('customer-address').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+
+            if (!customerName || !customerAddress) {
+                alert('Por favor, preencha todas as informações de entrega.');
+                return;
+            }
+
+            alert(`Pedido confirmado! \nNome: ${customerName}\nEndereço: ${customerAddress}\nPagamento: ${paymentMethod.toUpperCase()}`);
+            // Aqui você pode adicionar a lógica para enviar o pedido para o backend
+        }
+
+        function cancelOrder() {
+            if (confirm('Você tem certeza que deseja cancelar o pedido?')) {
+                window.location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

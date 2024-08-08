@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOD MARKET | Front</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+</head>
+<body>
+    <!-- Aqui começa o Home-->
+    <header class="max-width bg" id="home">
+        <div class="container">
+            <div class="menu">
+                <div class="logo"></div>
+                <div class="desktop-menu">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#">Serviços</a></li>
+                        <li><a href="#">Cardápio</a></li>
+                    </ul>
+                </div>
+            </div> 
+            <div class="call">
+                <div class="left">
+                    <img src="img/—Pngtree—food burger fries drink_14679691.png" alt="">
+                </div>
+                <div class="right">
+                    <h1 class="color-laranja text-gd">FOOD MARKET</h1>
+                    <h2 class="color-cinza1 text-md">Experimente o melhor lanche da região</h2>
+                    <p class="text-p">Oferecemos os melhores hamburgues e combos para você montar do seu jeito!</p>
+                    <button>Ver Cardápio</button>
+                </div>
+            </div>
+        </div>
+        <button id="back-to-top">^</button>
+    </header>
+   
+    <!-- Aqui começa o Service-->
+
+    <section class="max-width bg" id="service">
+        <div class="container">
+            <div class="content">
+                <div class="titulo">
+                    <span class="text-title color-laranja">Ofertas</span>
+                    <h2 class="text-md color-cinza1">Nossos Serviços</h2>
+                </div>
+                <div class="down">
+                    <div class="box">
+                        <i class="fa fa-cutlery text-gd color-laranja"></i>
+                        <h2>O melhor Lanche</h2>
+                        <p>Produzimos os melhores lanches com os melhores ingredientes para você</p>
+                    </div>
+                    <div class="box">
+                        <i class="fa-solid fa-pizza-slice text-gd color-laranja"></i>
+                        <h2>Comida rápida</h2>
+                        <p>Oferecemos uma grande diversidade de lanches e combos perfeitos para sua fome</p>
+                    </div>
+                    <div class="box">
+                        <i class="fa fa-motorcycle text-gd color-laranja"></i>
+                        <h2>Entrega</h2>
+                        <p>Oferecemos uma entrega rápida em toda a cidade</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        //botão back-to-top
+
+        var btn = document.querySelector("#back-to-top");
+        btn.addEventListener("click", function(){
+            window.scrollTo(0,0);
+        })
+    </script>
+</body>
+</html>
+    
