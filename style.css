@@ -338,3 +338,26 @@ body::-webkit-scrollbar-thumb{
     margin-left: 10px;
 }
 
+#cart {
+    margin-top: 20px;
+    /*border-top: 1px solid #000000;*/
+    padding-top: 20px;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    
+}
+.cart-item {
+    margin-bottom: 10px;
+}
+#total {
+    font-weight: bold;
+}
+#checkout {
+    margin-top: 20px;
+    display: none;
+}
+.hidden {
+    display: none;
+}
+
