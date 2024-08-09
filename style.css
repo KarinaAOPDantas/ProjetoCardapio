@@ -166,7 +166,7 @@ button:hover{
 
 .titulo{
     width: 100%;
-    min-height: 250px;
+    min-height:120px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -285,7 +285,6 @@ body::-webkit-scrollbar-thumb{
     margin-top: 10px;
 }
 
-
 #service .box h2{
     margin-top: 20px;
     text-align: center;
@@ -295,3 +294,47 @@ body::-webkit-scrollbar-thumb{
     margin-top: 20px;
     text-align: center;
 }
+
+/* Cardapio */ 
+
+#cardapio .content{
+    min-height:300px;
+}
+
+#cardapio .down{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    min-height: 200px;
+ 
+}
+
+#cardapio .down .contentbox{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    
+}
+
+#cardapio .box{
+    margin-top: 10px;
+    text-align: left;
+    display: inline;
+    width: 200%;
+    min-height: 60px;
+
+   
+}
+
+#cardapio .box input{
+    margin-top: 10px;
+    text-align: left;
+    display: inline;
+}
+
+#cardapio .box input[type=number] {
+    margin-left: 10px;
+}
+
