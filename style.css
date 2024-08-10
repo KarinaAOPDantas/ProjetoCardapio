@@ -338,7 +338,7 @@ body::-webkit-scrollbar-thumb{
     margin-left: 10px;
 }
 
-#cart {
+#cardapio .cart {
     margin-top: 20px;
     /*border-top: 1px solid #000000;*/
     padding-top: 20px;
@@ -350,14 +350,17 @@ body::-webkit-scrollbar-thumb{
 .cart-item {
     margin-bottom: 10px;
 }
-#total {
+#cardapio .total {
     font-weight: bold;
 }
-#checkout {
+#cardapio .checkout {
     margin-top: 20px;
     display: none;
 }
-.hidden {
+#cardapio .hidden {
+    display: none;
+}
+#cardapio .box input[type=number].hidden {
     display: none;
 }
 
