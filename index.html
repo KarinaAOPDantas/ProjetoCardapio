@@ -36,10 +36,8 @@
             </div>
         </div>
         <button id="back-to-top">^</button>
-    </header>
-   
+    </header>  
     <!-- Aqui começa o Service-->
-
     <section class="max-width bg" id="service">
         <div class="container">
             <div class="content">
@@ -67,7 +65,7 @@
             </div>
         </div>
     </section>
-    <!-- Aqui começa o Cardio-->
+    <!-- Aqui começa o Cardapio-->
      <section class="max-width bg" id="cardapio">
         <div class="container">
             <div class="content">
@@ -120,16 +118,21 @@
                         </div>
                     </div>
                 </div>
-  
-                <div id="cart">
-                    <h2>Carrinho de Compras</h2>
-                    <div id="cart-items"></div>
-                    <p id="total">Total: R$ 0,00</p>
-                    <button onclick="addMoreItems()">Adicionar itens no carrinho</button>
-                    <button onclick="checkout()">Finalizar pedido</button>
+                
+                <div id="carrinho" class="down">
+                    <div id="cart">
+                        <i class="fa fa-cart-plus text-md color-laranja" ></i>
+                        <h2 class=>Carrinho de Compras</h2>
+                    </div>
+                        <div id="cart-items"></div>
+                        <p id="total">Total: R$ 0,00</p>
+                        <div class="bottong">
+                            <button onclick="addMoreItems()">Adicionar itens no carrinho</button>
+                            <button onclick="checkout()">Finalizar pedido</button>
+                        </div>
                 </div>
-            
-                <div id="checkout" class="hidden">
+
+                <div id="checkout" class="hidden" class="down">
                     <h2>Finalização do Pedido</h2>
                     <p>Nome completo: <input type="text" id="customer-name"></p>
                     <p>Endereço: <input type="text" id="customer-address"></p>
@@ -149,17 +152,12 @@
             </div>
         </div>
     </section>
-     
-
     <script>
-
           //botão back-to-top
-
           var btn = document.querySelector("#back-to-top");
         btn.addEventListener("click", function(){
             window.scrollTo(0,0);
         })
-
         const cart = [];
         
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
@@ -196,7 +194,7 @@
 
         function checkout() {
             document.getElementById('checkout').classList.remove('hidden');
-            document.getElementById('cart').classList.add('hidden');
+            document.getElementById('carrinho').classList.add('hidden');
             updateSummary();
         }
 
@@ -224,7 +222,7 @@
             }
 
             alert(`Pedido confirmado! \nNome: ${customerName}\nEndereço: ${customerAddress}\nPagamento: ${paymentMethod.toUpperCase()}`);
-            // Aqui você pode adicionar a lógica para enviar o pedido para o backend
+            
         }
 
         function cancelOrder() {
